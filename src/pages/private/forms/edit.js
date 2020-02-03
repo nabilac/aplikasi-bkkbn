@@ -144,10 +144,15 @@ export default function EditForm() {
                             setKB(data_bkkbn);
                             let newkb = {};
                             for (let i = 0; i < data_kb.length; i++) {
+                                let no_tes = 16
                                
-                                const qid = ('0' + data_kb[i].No_Pertanyaan).slice(+1);
-                                const beauty = data_kb[i] || {}
+                                const qid = (`${data_kb[i]._id}`).slice(no_tes);
+                                //const qid = '0101'
+
+                                const beauty = beautyKB[qid](data_kb[i]);
+                                //const beauty = data_kb[i] || {}
                                 newkb[qid] = {
+                                    _rev: data_kb[i]._rev,
                                     ...beauty
                                 }
                             }
@@ -156,25 +161,49 @@ export default function EditForm() {
                                console.log(newkb)
                         }
 
-                        if (pkQuery.docs.length > 0) {
+                        // if (pkQuery.docs.length > 0) {
 
+                        //     let newpk = {};
+
+                        //     for (const doc of pkQuery.docs) {
+                        //         const qid = doc._id.replace(params.no_kk, "");
+
+                        //         const beauty = beautyPK(qid, doc);
+                        //         newpk[qid] = {
+                        //             _rev: doc._rev,
+                        //             ...beauty
+                        //         }
+
+                        //     }
+                        //     console.log(newpk)
+
+                        //     setPK(newpk);
+
+                        // }
+
+                        if (kkDoc) {
+
+                            const { data_pk, ...data_bkkbn } = kkDoc;
+
+                            setPK(data_bkkbn);
                             let newpk = {};
+                            for (let i = 0; i < data_pk.length; i++) {
+                                let no_tes = 16
 
-                            for (const doc of pkQuery.docs) {
-                                const qid = doc._id.replace(params.no_kk, "");
+                                const qid = (`${data_pk[i]._id}`).slice(no_tes);
 
-                                const beauty = beautyPK(qid, doc);
+                                const beauty = beautyPK(qid, data_pk[i]);
+
                                 newpk[qid] = {
-                                    _rev: doc._rev,
+                                    _rev: data_pk[i]._rev,
                                     ...beauty
                                 }
-
                             }
-                            console.log(newpk)
 
                             setPK(newpk);
-
+                               console.log(newpk)
                         }
+
                         setFetching(false);
                     }
 
