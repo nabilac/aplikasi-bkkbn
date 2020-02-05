@@ -202,6 +202,13 @@ function KB({ wilayah, keluarga, kb, mainSlide, setKB, handleNext, handleBack, s
 
     const saveValue = (normalizeValue) => {
         if (!isSomethingChange) {
+            setNormalizeKB(normalizeKB => ({
+                ...normalizeKB,
+                [no]: {
+                    ...normalizeValue,
+                    user_name: metadata.name
+                }
+            }))
             return handleNextSub();
         }
         //simpan ke db local

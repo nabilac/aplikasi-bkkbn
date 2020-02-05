@@ -135,12 +135,23 @@ function PK({ wilayah, keluarga, kb, pk, mainSlide, setPK, handleNext, handleBac
     }
 
     const saveValue = async (normalizeValue) => {
+        const id = `${wilayah.no_kk}${no}`;
         if (!isSomethingChange) {
+            setNormalizePK(normalizePK => ({
+                ...normalizePK,
+                [no]: {
+                    ...normalizeValue,
+                    _id: id,
+                    No_KK: wilayah.no_kk,
+                    Periode_Sensus: "2020",
+                    user_name: metadata.name
+                }
+            }));
             return handleNextSub();
         }
         //simpan ke db local
         setSubmitting(true);
-        const id = `${wilayah.no_kk}${no}`;
+        
         try {
             // const existing = await dataPK.local.get(id)
 

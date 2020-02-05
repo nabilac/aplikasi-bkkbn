@@ -50,10 +50,10 @@ function Wilayah({ wilayah, setWilayah, handleNext, mode, setKeluarga, keluarga,
 
     const [isSubmitting, setSubmitting] = useState(false);
 
-    useEffect(() => {
-        if (Object.keys(keluarga.data).length > 0)
-        return history.push('/form')
-    });
+    // useEffect(() => {
+    //     if (Object.keys(keluarga.data).length > 0)
+    //     return history.push('/form')
+    // }, [keluarga]);
 
 
     const handleChange = (e) => {

@@ -152,7 +152,7 @@ export default function EditForm() {
                                 const beauty = beautyKB[qid](data_kb[i]);
                                 //const beauty = data_kb[i] || {}
                                 newkb[qid] = {
-                                    _rev: data_kb[i]._rev,
+                                    _rev: kkDoc._rev,
                                     ...beauty
                                 }
                             }
@@ -195,7 +195,7 @@ export default function EditForm() {
                                 const beauty = beautyPK(qid, data_pk[i]);
 
                                 newpk[qid] = {
-                                    _rev: data_pk[i]._rev,
+                                    _rev: kkDoc._rev,
                                     ...beauty
                                 }
                             }
